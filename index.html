@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Aynee ❤️</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#08111f;color:white;text-align:center;cursor:none}
+#cursor{position:fixed;pointer-events:none;font-size:28px;z-index:9999}
+.hero,.section{padding:60px 20px}
+.card{max-width:900px;margin:auto;background:rgba(255,255,255,.08);padding:25px;border-radius:20px}
+.hiddenDog{font-size:28px;cursor:pointer;margin:10px;display:inline-block}
+#reward{display:none;margin-top:30px}
+img{max-width:100%;border-radius:16px}
+button{padding:12px 22px;border:none;border-radius:30px}
+</style>
+</head>
+<body>
+
+<div id="cursor">🐕‍⬛</div>
+
+<div class="hero">
+<h1>For Aynee ❤️</h1>
+<p>No distance can ever separate us.</p>
+<h2 id="countdown"></h2>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>✈️ Our Story</h2>
+<p>❤️ February 20, 2026 - The day I asked you to be my girlfriend.</p>
+<p>✈️ Our First Airport Kiss</p>
+<p>💔 Our Airport Goodbye</p>
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>🐶 Find the 10 Dogs</h2>
+<div id="dogs">
+<span class="hiddenDog">🐶</span><span class="hiddenDog">🐶</span>
+<span class="hiddenDog">🐶</span><span class="hiddenDog">🐶</span>
+<span class="hiddenDog">🐶</span><span class="hiddenDog">🐶</span>
+<span class="hiddenDog">🐶</span><span class="hiddenDog">🐶</span>
+<span class="hiddenDog">🐶</span><span class="hiddenDog">🐶</span>
+</div>
+<p>Found: <span id="found">0</span>/10</p>
+<div id="reward">
+<h2>🗽 See you in New York ❤️</h2>
+<p>I can't wait to see you on July 10, 2026.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>📸 Our Memory</h2>
+<p>Upload your photo as <b>memory1.jpg</b> in the same GitHub folder.</p>
+<img src="memory1.jpg" alt="Our Memory">
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>🎵 Our Song</h2>
+<button onclick="window.open('https://www.youtube.com/watch?v=NdYWuo9OFAw')">Play Our Song</button>
+</div>
+</div>
+
+<script>
+const target=new Date("2026-07-10T00:00:00");
+function tick(){
+ let d=target-new Date();
+ let days=Math.floor(d/86400000);
+ let hrs=Math.floor((d%86400000)/3600000);
+ let min=Math.floor((d%3600000)/60000);
+ let sec=Math.floor((d%60000)/1000);
+ document.getElementById("countdown").innerHTML=`${days}d ${hrs}h ${min}m ${sec}s until New York`;
+}
+setInterval(tick,1000); tick();
+
+document.addEventListener('mousemove',e=>{
+ let c=document.getElementById('cursor');
+ c.style.left=e.clientX+'px';
+ c.style.top=e.clientY+'px';
+});
+
+let found=0;
+document.querySelectorAll('.hiddenDog').forEach(d=>{
+ d.onclick=()=>{
+   if(d.dataset.done)return;
+   d.dataset.done=1;
+   d.textContent='❤️';
+   found++;
+   document.getElementById('found').textContent=found;
+   if(found===10) document.getElementById('reward').style.display='block';
+ };
+});
+</script>
+
+</body>
+</html>
